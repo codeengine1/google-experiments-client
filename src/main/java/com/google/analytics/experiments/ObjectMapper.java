@@ -5,8 +5,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
-
 /**
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
@@ -21,7 +19,6 @@ class ObjectMapper {
 	}
 
 	/**
-	 *
 	 * @param json
 	 * @param clazz
 	 * @param <T>
