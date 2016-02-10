@@ -12,24 +12,24 @@ import org.slf4j.LoggerFactory;
  */
 @Ignore
 public class GoogleExperimentsClientTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GoogleExperimentsClientTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GoogleExperimentsClientTest.class);
 
-	public static GoogleExperimentsSettings getTestSettings() {
-		Config config = ConfigFactory.load("test.application.conf");
-		Config gaConfig = config.getConfig("google.analytics");
-		return new GoogleExperimentsSettings(
-				gaConfig.getString("serviceAccount.email"),
-				gaConfig.getString("serviceAccount.key"),
-				gaConfig.getString("accountId"),
-				gaConfig.getString("trackingId"),
-				gaConfig.getString("viewId")
-		);
-	}
+    public static GoogleExperimentsSettings getTestSettings() {
+        Config config = ConfigFactory.load("test.application.conf");
+        Config gaConfig = config.getConfig("google.analytics");
+        return new GoogleExperimentsSettings(
+                gaConfig.getString("serviceAccount.email"),
+                gaConfig.getString("serviceAccount.key"),
+                gaConfig.getString("accountId"),
+                gaConfig.getString("trackingId"),
+                gaConfig.getString("viewId")
+        );
+    }
 
-	@Test
-	public void testFetchExperiments() {
-		GoogleExperimentsClient service = new GoogleExperimentsClient(getTestSettings());
-		final GoogleExperimentsResult result = service.fetchExperiments();
-		LOGGER.debug(result.toString());
-	}
+    @Test
+    public void testFetchExperiments() {
+        GoogleExperimentsClient service = new GoogleExperimentsClient(getTestSettings());
+        final GoogleExperimentsResult result = service.fetchExperiments();
+        LOGGER.debug(result.toString());
+    }
 }
