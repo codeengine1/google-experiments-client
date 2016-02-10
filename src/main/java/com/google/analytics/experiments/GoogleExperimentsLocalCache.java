@@ -7,7 +7,7 @@ import java.util.TimerTask;
 /**
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
-public class GoogleExperimentsLocalCache {
+public class GoogleExperimentsLocalCache implements GoogleExperimentsCache {
     private final GoogleExperimentsClient _client;
     private volatile GoogleExperimentsResult _googleExperimentsResult;
 
@@ -19,10 +19,11 @@ public class GoogleExperimentsLocalCache {
     public GoogleExperimentsLocalCache(GoogleExperimentsClient client,
                                        Duration refreshInterval) {
         _client = client;
-        fetchExperiments();
 
         Timer timer = new Timer();
-        timer.schedule(new UpdateCacheTimer(), 0, refreshInterval.toMillis());
+        timer.schedule(new UpdateCacheTimer(), refreshInterval.toMillis(), refreshInterval.toMillis());
+
+        fetchExperiments();
     }
 
     public GoogleExperimentsResult getExperiments() {

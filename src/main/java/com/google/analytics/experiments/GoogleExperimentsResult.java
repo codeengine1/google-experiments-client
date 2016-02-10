@@ -20,6 +20,7 @@ public class GoogleExperimentsResult {
     private final Integer _startIndex;
     private final Integer _itemsPerPage;
     private final List<GoogleExperimentsItem> _items;
+    private String json;
 
     public GoogleExperimentsResult(@JsonProperty("kind") String kind,
                                    @JsonProperty("username") String username,
@@ -57,6 +58,15 @@ public class GoogleExperimentsResult {
 
     public List<GoogleExperimentsItem> getItems() {
         return _items;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public GoogleExperimentsResult setJson(String json) {
+        this.json = json;
+        return this;
     }
 
     @Override

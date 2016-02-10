@@ -14,14 +14,15 @@ public class GoogleExperimentsLocalCacheTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(GoogleExperimentsLocalCacheTest.class);
 
     @Test
-    public void testLocalCachRefresh() throws InterruptedException {
+    public void testLocalCacheRefresh() throws InterruptedException {
         Duration testDuration = Duration.of(3, ChronoUnit.SECONDS);
         GoogleExperimentsSettings settings = GoogleExperimentsClientTest.getTestSettings();
-        GoogleExperimentsLocalCache cache = new GoogleExperimentsLocalCache(settings, testDuration);
+        GoogleExperimentsCache cache = new GoogleExperimentsLocalCache(settings, testDuration);
 
         for (int i = 0; i < 5; i++) {
             LOGGER.debug("Sleeping for 5 seconds ...");
             Thread.sleep(5000);
+            LOGGER.debug(cache.getExperiments().toString());
         }
     }
 }
