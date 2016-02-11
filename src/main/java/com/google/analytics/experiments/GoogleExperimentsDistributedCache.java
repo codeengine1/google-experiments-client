@@ -19,7 +19,7 @@ import java.util.TimerTask;
  *
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
-public class GoogleExperimentsDistributedCache implements GoogleExperimentsCache {
+public class GoogleExperimentsDistributedCache extends AbstractGoogleExperimentsCache implements GoogleExperimentsCache {
     private static final Logger LOGGER = LoggerFactory.getLogger(GoogleExperimentsDistributedCache.class);
     private volatile GoogleExperimentsResult _googleExperimentsResult;
     private final GoogleExperimentsClient _experimentsClient;

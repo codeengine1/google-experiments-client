@@ -21,4 +21,16 @@ public interface GoogleExperimentsCache {
      * @return isActive
      */
     public boolean isVariationActive(String experimentId, String variationName);
+
+    /**
+     * @param experimentId
+     * @return isActive
+     */
+    public boolean hasActiveVariations(String experimentId);
+
+    /**
+     * @param experimentId
+     * @return variation
+     */
+    public GoogleExperimentsVariation selectVariation(String experimentId);
 }

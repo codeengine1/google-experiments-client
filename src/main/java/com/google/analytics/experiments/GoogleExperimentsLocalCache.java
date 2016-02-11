@@ -7,7 +7,7 @@ import java.util.TimerTask;
 /**
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
-public class GoogleExperimentsLocalCache implements GoogleExperimentsCache {
+public class GoogleExperimentsLocalCache extends AbstractGoogleExperimentsCache implements GoogleExperimentsCache {
     private final GoogleExperimentsClient _client;
     private volatile GoogleExperimentsResult _googleExperimentsResult;
 
@@ -38,13 +38,5 @@ public class GoogleExperimentsLocalCache implements GoogleExperimentsCache {
 
     private void fetchExperiments() {
         _googleExperimentsResult = _client.fetchExperiments();
-    }
-
-    public boolean isExperimentActive(String experimentId) {
-        return false;
-    }
-
-    public boolean isVariationActive(String experimentId, String variationId) {
-        return false;
     }
 }
