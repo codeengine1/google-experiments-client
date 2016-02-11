@@ -1,6 +1,7 @@
 package com.google.analytics.experiments;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
+@Ignore
 public class SelectWeightedRandomVariationTest {
     private static Logger LOGGER = LoggerFactory.getLogger(SelectWeightedRandomVariationTest.class);
 

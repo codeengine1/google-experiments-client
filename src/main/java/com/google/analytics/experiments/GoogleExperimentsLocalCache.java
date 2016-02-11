@@ -39,4 +39,12 @@ public class GoogleExperimentsLocalCache implements GoogleExperimentsCache {
     private void fetchExperiments() {
         _googleExperimentsResult = _client.fetchExperiments();
     }
+
+    public boolean isExperimentActive(String experimentId) {
+        return false;
+    }
+
+    public boolean isVariationActive(String experimentId, String variationId) {
+        return false;
+    }
 }

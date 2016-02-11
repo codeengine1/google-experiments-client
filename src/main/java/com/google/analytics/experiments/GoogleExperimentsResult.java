@@ -69,6 +69,119 @@ public class GoogleExperimentsResult {
         return this;
     }
 
+    public GoogleExperimentsItem getExperiment(String experimentId) {
+        if (_items == null || _items.size() == 0) {
+            return null;
+        }
+
+        for (GoogleExperimentsItem item : _items) {
+            if (item.getId() == null
+                    || item.getKind() == null
+                    || !item.getKind().equals(GoogleExperimentsItem.EXPERIMENT_KIND)) {
+                continue;
+            }
+
+            if (item.getId().equals(experimentId)) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param experimentId
+     * @return isActive
+     */
+    public boolean isExperimentActive(String experimentId) {
+        GoogleExperimentsItem experiment = getExperiment(experimentId);
+
+        if (experiment == null) {
+            return false;
+        }
+
+        if (experiment.getStatus().equals(GoogleExperimentsItem.RUNNING_STATUS)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param experimentId
+     * @param variationName
+     * @return isActive
+     */
+    public boolean isVariationActive(String experimentId, String variationName) {
+        if (!isExperimentActive(experimentId)) {
+            return false;
+        }
+
+        GoogleExperimentsItem experiment = getExperiment(experimentId);
+
+        if (experiment.getVariations() == null || experiment.getVariations().size() == 0) {
+            return false;
+        }
+
+        for (GoogleExperimentsVariation variation : experiment.getVariations()) {
+            if (variation.getName() == null || variation.getStatus() == null) {
+                continue;
+            }
+
+            if (variation.getName().equals(variationName)
+                    && variation.getStatus().equals(GoogleExperimentsVariation.ACTIVE_STATUS)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param experimentId
+     * @return isActive
+     */
+    public boolean hasActiveVariations(String experimentId) {
+        if (!isExperimentActive(experimentId)) {
+            return false;
+        }
+
+        GoogleExperimentsItem experiment = getExperiment(experimentId);
+
+        if (experiment.getVariations() == null || experiment.getVariations().size() == 0) {
+            return false;
+        }
+
+        for (GoogleExperimentsVariation variation : experiment.getVariations()) {
+            if (variation.getName() == null || variation.getStatus() == null) {
+                continue;
+            }
+
+            if (variation.getStatus().equals(GoogleExperimentsVariation.ACTIVE_STATUS)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param experimentId
+     * @return variation
+     */
+    public GoogleExperimentsVariation selectVariation(String experimentId) {
+        if (!isExperimentActive(experimentId)) {
+            return null;
+        }
+
+        if (!hasActiveVariations(experimentId)) {
+            return null;
+        }
+
+        GoogleExperimentsItem experiment = getExperiment(experimentId);
+        return GoogleExperimentsVariation.selectWeightedRandom(experiment.getVariations());
+    }
+
     @Override
     public String toString() {
         return "GoogleExperimentsResult{" +

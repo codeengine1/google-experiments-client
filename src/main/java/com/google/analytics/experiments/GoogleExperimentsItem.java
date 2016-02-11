@@ -17,6 +17,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GoogleExperimentsItem {
 
+    public static final String RUNNING_STATUS = "RUNNING";
+    public static final String EXPERIMENT_KIND = "analytics#experiment";
     private final String _id;
     private final String _kind;
     private final String _selfLink;
