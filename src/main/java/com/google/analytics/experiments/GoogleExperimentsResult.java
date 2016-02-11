@@ -182,6 +182,34 @@ public class GoogleExperimentsResult {
         return GoogleExperimentsVariation.selectWeightedRandom(experiment.getVariations());
     }
 
+    /**
+     * @param experimentId
+     * @param variationName
+     * @return variationIndex
+     */
+    public Integer getVariationIndex(String experimentId, String variationName) {
+        if (!isExperimentActive(experimentId)) {
+            return null;
+        }
+
+        if (!hasActiveVariations(experimentId)) {
+            return null;
+        }
+
+        GoogleExperimentsItem experiment = getExperiment(experimentId);
+        int index = 0;
+
+        for (GoogleExperimentsVariation variation : experiment.getVariations()) {
+            if (variation.getName().equals(variationName)) {
+                return index;
+            }
+
+            index++;
+        }
+
+        return null;
+    }
+
     @Override
     public String toString() {
         return "GoogleExperimentsResult{" +

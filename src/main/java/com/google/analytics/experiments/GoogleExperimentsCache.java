@@ -33,4 +33,11 @@ public interface GoogleExperimentsCache {
      * @return variation
      */
     public GoogleExperimentsVariation selectVariation(String experimentId);
+
+    /**
+     * @param experimentId
+     * @param variationName
+     * @return variationIndex
+     */
+    public Integer getVariationIndex(String experimentId, String variationName);
 }

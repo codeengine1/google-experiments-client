@@ -17,14 +17,17 @@ public class GoogleExperimentsLocalCacheTest {
 
     @Test
     public void testLocalCacheRefresh() throws InterruptedException {
-        Duration testDuration = Duration.of(3, ChronoUnit.SECONDS);
+        Duration testDuration = Duration.of(2, ChronoUnit.SECONDS);
         GoogleExperimentsSettings settings = GoogleExperimentsClientTest.getTestSettings();
         GoogleExperimentsCache cache = new GoogleExperimentsLocalCache(settings, testDuration);
+        final String experimentId = "3PVvw9CBSi-dAbphi3waoQ";
 
-        for (int i = 0; i < 5; i++) {
-            LOGGER.debug("Sleeping for 5 seconds ...");
-            Thread.sleep(5000);
-            LOGGER.debug(cache.getExperiments().toString());
+        for (int i = 0; i < 10; i++) {
+            LOGGER.debug("Sleeping for 2.5 seconds ...");
+            Thread.sleep(2500);
+            GoogleExperimentsVariation variation = cache.selectVariation(experimentId);
+            int index = cache.getVariationIndex(experimentId, variation.getName());
+            LOGGER.debug("Experiment {}; Variation {}:{}", experimentId, variation.getName(), index);
         }
     }
 }

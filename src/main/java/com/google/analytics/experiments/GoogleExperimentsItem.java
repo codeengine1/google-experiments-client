@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class GoogleExperimentsItem {
     private final BigDecimal _trafficCoverage;
     private final Boolean _equalWeighting;
     private final String _snippet;
-    private final List<GoogleExperimentsVariation> _variations;
+    private final LinkedList<GoogleExperimentsVariation> _variations;
     private final String _servingFramework;
     private final Boolean editableInGaUi;
 
@@ -67,7 +68,7 @@ public class GoogleExperimentsItem {
                                  @JsonProperty("trafficCoverage") BigDecimal trafficCoverage,
                                  @JsonProperty("equalWeighting") Boolean equalWeighting,
                                  @JsonProperty("snippet") String snippet,
-                                 @JsonProperty("variations") List<GoogleExperimentsVariation> variations,
+                                 @JsonProperty("variations") LinkedList<GoogleExperimentsVariation> variations,
                                  @JsonProperty("servingFramework") String servingFramework,
                                  @JsonProperty("editableInGaUi") Boolean editableInGaUi) {
         _id = id;
@@ -185,7 +186,7 @@ public class GoogleExperimentsItem {
         return _snippet;
     }
 
-    public List<GoogleExperimentsVariation> getVariations() {
+    public LinkedList<GoogleExperimentsVariation> getVariations() {
         return _variations;
     }
 

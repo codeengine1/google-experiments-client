@@ -44,4 +44,14 @@ abstract class AbstractGoogleExperimentsCache implements GoogleExperimentsCache 
 
         return experiments.selectVariation(experimentId);
     }
+
+    public Integer getVariationIndex(String experimentId, String variationName) {
+        GoogleExperimentsResult experiments = getExperiments();
+
+        if (experiments == null) {
+            return null;
+        }
+
+        return experiments.getVariationIndex(experimentId, variationName);
+    }
 }
